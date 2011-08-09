@@ -38,7 +38,7 @@ if xcode_application ~= nil then
 	-- so use a numeric for
 	local file_to_open = arg[1] or "MySampleProject.xcodeproj"
 	local url_to_open = GetURLFromFileAndPath(file_to_open)
-	local xcode_document = xcode_application:open(url_to_open)
+	local xcode_document = xcode_application:open_(url_to_open)
 	
 	local simulator_or_device = arg[2] or "os"
 
@@ -76,11 +76,11 @@ if xcode_application ~= nil then
 		if "simulator" == simulator_or_device then
 			local sdk = string.gsub(active_sdk, "os", "simulator")
 			print("sdk", sdk)
-			xcode_project:setActiveSDK(sdk)
+			xcode_project:setActiveSDK_(sdk)
 		else
 			local sdk = string.gsub(active_sdk, "simulator", "os")
 			print("sdk", sdk)
-			xcode_project:setActiveSDK(sdk)
+			xcode_project:setActiveSDK_(sdk)
 		end
 		print("changed activeSDK", xcode_project:activeSDK())
 	end
